@@ -1,3 +1,13 @@
 .profile__info {
     display: grid;
+    margin: 0;
+    max-height: 77px;
+    grid-template-columns: 373px 24px;
+    grid-template-rows: 39px 22px;
+    grid-template-areas: 
+    "name button"
+    "profession profession"
+    ;
+    gap: 16px 18px;
+    align-self: center;
 }
