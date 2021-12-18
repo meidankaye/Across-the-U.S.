@@ -1,0 +1,7 @@
+.places {
+    display: grid;
+    margin: 50px 0 0;
+    grid-template-columns: repeat(3, 282px);
+    grid-template-rows: repeat(2, 361px);
+    gap: 17px 20px;
+}

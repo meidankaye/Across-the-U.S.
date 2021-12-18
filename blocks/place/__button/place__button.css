@@ -1,0 +1,13 @@
+.place__button {
+    all: unset;
+    background-image: url(../../../images/places-heart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-width: 21px;
+    min-height: 19px;
+}
+
+.place__button:hover {
+    opacity: 0.5;
+}
