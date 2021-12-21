@@ -9,3 +9,9 @@
         margin: 45px 200px 60px;
     }
 }
+
+@media screen and (max-width: 1279px) {
+    .page__wrapper {
+        margin: 28px 0 36px;
+    }
+}
