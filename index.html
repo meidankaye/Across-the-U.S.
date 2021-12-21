@@ -99,21 +99,22 @@
             </div>
           </article>
         </section>
-        <section class="popup">
+        <div class="popup">
           <div class="popup__container">
-            <button class="popup__button"></button>
+            <button class="popup__close-button"></button>
             <h3 class="popup__title">Edit profile</h3>
-            <form class="form">
-              <input type="text" name="name" class="form__name" placeholder="Name">
-              <input type="text" name="profession" class="form__profession" placeholder="About Me">
-              <button class="form__button">Save</button>
+            <form class="popup__form">
+              <input type="text" name="name" class="popup__input popup__input_text_name" placeholder="Name">
+              <input type="text" name="profession" class="popup__input popup__input_text_profession" placeholder="About Me">
             </form>
+            <button class="popup__save-button">Save</button>
           </div>
-        </section>
+        </div>
       </main>
       <footer class="footer">
         <p class="footer__text">&#169; 2021 Around The U.S.</p>
       </footer>
     </div>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

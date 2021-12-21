@@ -1,4 +1,4 @@
-.popup__button {
+.popup__close-button {
     all: unset;
     background-image: url(../../../images/form-x-button.svg);
     position: absolute;
@@ -11,6 +11,6 @@
     right: -48.28px;
 }
 
-.popup__button:hover {
+.popup__close-button:hover {
     opacity: 0.6;
 }
