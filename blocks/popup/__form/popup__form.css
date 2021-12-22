@@ -4,3 +4,9 @@
     align-self: center;
     min-width: 358px;
 }
+
+@media screen and (max-width: 1279px) {
+    .popup__form {
+        min-width: 238px;
+    }
+}
