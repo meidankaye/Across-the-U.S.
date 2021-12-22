@@ -1,16 +1,20 @@
-# Project 4: Around The U.S.
+# Project 4: Across the U.S.
 
 ### Overview
+* Project Name
+* Project Description
+* Technologies & Techniques
 
-* Figma
-* Images
+**Project Name**
 
-**Figma**
+Across the U.S.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+**Project Description**
 
-**Images**
+A single web-page Project showcasing an interactive user profile with images showing travel locations. The User's names and professions can be edited and changed.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+**Technologies & Techniques**
 
-Have fun with JavaScript!
+This Project utilizes Flexbox and Flex properties, Grid layouts and adaptive Grid layouts, as well as a script in JavaScript which contains simple functions and event listeners. The website is sized for mobile and desktop resolutions (320px and 1280px respectively).
+
+* The Project Website: https://meidankaye.github.io/Around-the-U.S./
