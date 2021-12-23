@@ -3,8 +3,8 @@ let profileProfession = document.querySelector('.profile__profession');
 let editBtn = document.querySelector('.profile__edit-button');
 
 let popup = document.querySelector('.popup');
+let form = document.querySelector('.popup__form');
 let closeBtn = document.querySelector('.popup__close-button');
-let saveBtn = document.querySelector('.popup__save-button');
 let popupInputName = document.querySelector('.popup__input_text_name');
 let popupInputProfession = document.querySelector('.popup__input_text_profession');
 
@@ -15,10 +15,11 @@ editBtn.addEventListener('click', () => {
     openPopup();
 });
 
-saveBtn.addEventListener('click', () => {
+form.addEventListener('submit', (e) => {
     profileName.textContent = popupInputName.value;
     profileProfession.textContent = popupInputProfession.value;
     closePopup();
+    e.preventDefault();
 });
 
 closeBtn.addEventListener('click', closePopup);
