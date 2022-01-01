@@ -32,72 +32,7 @@
         </section>
         
         <section class="places">
-          <article class="places__item place">
-            <img
-              src="./images/place-yosemite.jpg"
-              alt="Yosemite Valley"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Yosemite Valley</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
-          <article class="places__item place">
-            <img
-              src="./images/place-louise.jpg"
-              alt="Lake Louise"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Lake Louise</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
-          <article class="places__item place">
-            <img
-              src="./images/place-baldmt.jpg"
-              alt="Bald Mountains"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Bald Mountains</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
-          <article class="places__item place">
-            <img
-              src="./images/place-latemar.jpg"
-              alt="Latemar"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Latemar</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
-          <article class="places__item place">
-            <img
-              src="./images/place-vanoise.jpg"
-              alt="Vanoise National Park"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Vanoise National Park</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
-          <article class="places__item place">
-            <img
-              src="./images/place-lago.jpg"
-              alt="Lago di Braies"
-              class="place__image"
-            />
-            <div class="place__details">
-              <h2 class="place__title">Lago di Braies</h2>
-              <button class="place__button"></button>
-            </div>
-          </article>
+          
         </section>
         <div class="popup">
           <div class="popup__container">
@@ -115,6 +50,15 @@
         <p class="footer__text">&#169; 2021 Around The U.S.</p>
       </footer>
     </div>
+    <template id="place-template">
+      <article class="places__item place">
+        <div class="place__image"></div>
+        <div class="place__details">
+          <h2 class="place__title"></h2>
+          <button class="place__button"></button>
+        </div>
+      </article>
+    </template>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
