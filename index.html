@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the U.S.</title>
   </head>
+
   <body class="page">
     <div class="page__wrapper">
       <header class="header">
@@ -30,20 +31,55 @@
           </div>
           <button class="profile__add-button"></button>
         </section>
-        
-        <section class="places">
-          
-        </section>
-        <div class="popup">
+
+        <section class="places"></section>
+        <div class="popup popup_type_edit">
           <div class="popup__container">
             <button class="popup__close-button"></button>
             <h3 class="popup__title">Edit profile</h3>
             <form class="popup__form">
-              <input type="text" name="name" class="popup__input popup__input_text_name" placeholder="Name">
-              <input type="text" name="profession" class="popup__input popup__input_text_profession" placeholder="About Me">
+              <input
+                type="text"
+                name="name"
+                class="popup__input popup__input_text_name"
+                placeholder="Name"
+              />
+              <input
+                type="text"
+                name="profession"
+                class="popup__input popup__input_text_profession"
+                placeholder="About Me"
+              />
               <button class="popup__save-button" type="submit">Save</button>
             </form>
           </div>
+        </div>
+        <div class="popup popup_type_add">
+          <div class="popup__container">
+            <button class="popup__close-button"></button>
+            <h3 class="popup__title">New Place</h3>
+            <form class="popup__form">
+              <input
+                type="text"
+                name="title"
+                class="popup__input popup__input_text_title"
+                placeholder="Title"
+              />
+              <input
+                type="text"
+                name="link"
+                class="popup__input popup__input_text_link"
+                placeholder="Image link"
+              />
+              <button class="popup__save-button" type="submit">Create</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_type_preview" style="display: flex;visibility: initial;">
+            <div class="popup__container popup__container_type_preview">
+                <button class="popup__close-button"></button>
+                <img src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="" class="popup__image-preview">
+            </div>
         </div>
       </main>
       <footer class="footer">
