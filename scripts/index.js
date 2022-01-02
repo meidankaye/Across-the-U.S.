@@ -57,6 +57,9 @@ const placesTemplate = document.querySelector('#place-template')
 .content.querySelector('.places__item');
 
 
+/* -------------------------------------------------------------------------- */
+/*                               Event Listeners                              */
+/* -------------------------------------------------------------------------- */
 
 editBtn.addEventListener('click', () => {
     popupInputName.value = profileName.textContent;
@@ -73,13 +76,30 @@ editForm.addEventListener('submit', (e) => {
 
 closeBtn.addEventListener('click', togglePopup);
 
+
+/* -------------------------------------------------------------------------- */
+/*                                  Functions                                 */
+/* -------------------------------------------------------------------------- */
+
 function togglePopup() {
     popup.classList.toggle('popup_opened');
 }
 
-initialCards.forEach(function (card) {
+function createPlace(card) {
     const placeElement = placesTemplate.cloneNode(true);
+
     placeElement.querySelector('.place__title').textContent = card.name;
+
     placeElement.querySelector('.place__image').style.backgroundImage = `url(${card.link})`;
-    places.append(placeElement);
+
+    return placeElement;
+}
+
+function renderPlace(card, container) {
+    container.append(card);
+}
+
+initialCards.forEach(function (card) {
+    const newPlace = createPlace(card);
+    renderPlace(newPlace, places);
 });
