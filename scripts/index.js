@@ -30,9 +30,16 @@ const initialCards = [{
 
 const editPopup = document.querySelector(".popup_type_edit");
 const addPopup = document.querySelector(".popup_type_add");
+const imagePopup = document.querySelector(".popup_type_preview");
+const places = document.querySelector(".places");
+const previewImage = document.querySelector(".popup__image-preview");
+
+/* -------------------------------------------------------------------------- */
+/*                                    Forms                                   */
+/* -------------------------------------------------------------------------- */
+
 const editForm = editPopup.querySelector(".popup__form");
 const addForm = addPopup.querySelector(".popup__form");
-const places = document.querySelector(".places");
 
 /* -------------------------------------------------------------------------- */
 /*                            Buttons and DOM nodes                           */
@@ -44,6 +51,7 @@ const editBtn = document.querySelector(".profile__edit-button");
 const addBtn = document.querySelector(".profile__add-button");
 const editPopupCloseBtn = editPopup.querySelector(".popup__close-button");
 const addPopupCloseBtn = addPopup.querySelector(".popup__close-button");
+const imagePopupCloseBtn = imagePopup.querySelector(".popup__close-button");
 
 /* -------------------------------------------------------------------------- */
 /*                                  Inputs                                    */
@@ -81,6 +89,8 @@ editForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
+//addForm.addEventListener("submit", (e) => {});
+
 editPopupCloseBtn.addEventListener("click", () => {
     togglePopup(editPopup);
 });
@@ -89,6 +99,10 @@ addBtn.addEventListener("click", () => togglePopup(addPopup));
 
 addPopupCloseBtn.addEventListener("click", () => {
     togglePopup(addPopup);
+});
+
+imagePopupCloseBtn.addEventListener("click", () => {
+    togglePopup(imagePopup);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -108,8 +122,10 @@ function createPlace(card) {
         ".place__image"
     );
     imageElem.style.backgroundImage = `url(${card.link})`;
+
     imageElem.addEventListener("click", function() {
-        togglePopup();
+        previewImage.src = card.link;
+        togglePopup(imagePopup);
     })
 
     return placeElement;
