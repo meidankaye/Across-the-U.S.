@@ -64,13 +64,6 @@ const popupInputProfession = editForm.querySelector(
 const popupInputTitle = addForm.querySelector(".popup__input_text_title");
 const popupInputLink = addForm.querySelector(".popup__input_text_link");
 
-/* -------------------------------------------------------------------------- */
-/*                                  Templates                                 */
-/* -------------------------------------------------------------------------- */
-
-const placesTemplate = document
-    .querySelector("#place-template")
-    .content.querySelector(".places__item");
 
 /* -------------------------------------------------------------------------- */
 /*                               Event Listeners                              */
@@ -89,13 +82,18 @@ editForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
-//addForm.addEventListener("submit", (e) => {});
-
 editPopupCloseBtn.addEventListener("click", () => {
     togglePopup(editPopup);
 });
 
 addBtn.addEventListener("click", () => togglePopup(addPopup));
+
+addForm.addEventListener("submit", (e) => {
+    card.name = popupInputTitle.value;
+    card.link = popupInputLink.value;
+    togglePopup(addPopup);
+    e.preventDefault();
+});
 
 addPopupCloseBtn.addEventListener("click", () => {
     togglePopup(addPopup);
@@ -114,19 +112,27 @@ function togglePopup(popup) {
 }
 
 function createPlace(card) {
+    const placesTemplate = document
+    .querySelector("#place-template")
+    .content.querySelector(".places__item");
+
     const placeElement = placesTemplate.cloneNode(true);
+    const placeTitle = placeElement.querySelector(".place__title");
+    const imageElem = placeElement.querySelector(".place__image");
+    const cardLikeBtn = placeElement.querySelector(".place__button");
 
-    placeElement.querySelector(".place__title").textContent = card.name;
+    placeTitle.textContent = card.name;
 
-    const imageElem = placeElement.querySelector(
-        ".place__image"
-    );
     imageElem.style.backgroundImage = `url(${card.link})`;
 
     imageElem.addEventListener("click", function() {
         previewImage.src = card.link;
         togglePopup(imagePopup);
     })
+
+    cardLikeBtn.addEventListener("click", () => {
+        cardLikeBtn.classList.toggle("place__button_active");
+    });
 
     return placeElement;
 }
