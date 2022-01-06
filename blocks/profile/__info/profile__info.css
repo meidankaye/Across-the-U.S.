@@ -6,8 +6,7 @@
     grid-template-rows: 39px 22px;
     grid-template-areas: 
     "name button"
-    "profession profession"
-    ;
+    "profession profession";
     gap: 16px 18px;
     align-self: center;
 }
@@ -18,8 +17,7 @@
         grid-template-rows: 22px 14px;
         grid-template-areas: 
         "name button"
-        "profession profession"
-        ;
+        "profession profession";
         max-height: 50px;
         gap: 14px 10px;
         margin: 0 28px 34px;
