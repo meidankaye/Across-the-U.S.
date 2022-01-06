@@ -97,6 +97,7 @@ addForm.addEventListener("submit", (e) => {
     renderPlace(createPlace(card), places);
     togglePopup(addPopup);
     e.preventDefault();
+    addForm.reset();
 });
 
 addPopupCloseBtn.addEventListener("click", () => {
@@ -124,6 +125,7 @@ function createPlace(card) {
     const placeTitle = placeElement.querySelector(".place__title");
     const imageElem = placeElement.querySelector(".place__image");
     const cardLikeBtn = placeElement.querySelector(".place__button");
+    const cardDeleteBtn = placeElement.querySelector(".place__trash");
 
     placeTitle.textContent = card.name;
 
@@ -131,18 +133,23 @@ function createPlace(card) {
 
     imageElem.addEventListener("click", function() {
         previewImage.src = card.link;
+        imagePopup.querySelector(".popup__image-name").textContent = card.name;
         togglePopup(imagePopup);
     })
 
-    //cardLikeBtn.addEventListener("click", () => {
-    //    cardLikeBtn.classList.toggle("place__button_active");
-    //});
+    cardLikeBtn.addEventListener("click", () => {
+        cardLikeBtn.classList.toggle("place__button_active");
+    });
+
+    cardDeleteBtn.addEventListener("click", () => {
+        placeElement.remove();
+    });
 
     return placeElement;
 }
 
 function renderPlace(card, container) {
-    container.append(card);
+    container.prepend(card);
 }
 
 initialCards.forEach(function(card) {
