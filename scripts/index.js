@@ -59,9 +59,9 @@ const imagePopupCloseBtn = imagePopup.querySelector(".popup__close-button");
 /*                                  Inputs                                    */
 /* -------------------------------------------------------------------------- */
 
-const popupInputName = editForm.querySelector(".popup__input_text_name");
+const popupInputName = editForm.querySelector(".popup__input_type_name");
 const popupInputProfession = editForm.querySelector(
-    ".popup__input_text_profession"
+    ".popup__input_type_profession"
 );
 
 
@@ -90,8 +90,8 @@ editPopupCloseBtn.addEventListener("click", () => {
 addBtn.addEventListener("click", () => togglePopup(addPopup));
 
 addForm.addEventListener("submit", (e) => {
-    const placeName = addForm.querySelector(".popup__input_text_title");
-    const placeLink = addForm.querySelector(".popup__input_text_link");
+    const placeName = addForm.querySelector(".popup__input_type_title");
+    const placeLink = addForm.querySelector(".popup__input_type_link");
     const card = {
         name: placeName.value,
         link: placeLink.value,
