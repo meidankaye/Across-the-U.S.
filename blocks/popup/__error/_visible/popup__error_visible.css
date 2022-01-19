@@ -5,6 +5,11 @@
     font-size: 12px;
     line-height: 15px;
     color: #FF0000;
-    margin: 5px 0 -17px;
-    max-height: 12px;
+    margin: 5px 0 0;
+    padding-bottom: 1px;
+    height: 24px;
+}
+
+.popup__error_visible:last-of-type {
+    padding-bottom: 19px;
 }

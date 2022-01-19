@@ -27,12 +27,13 @@ const initialCards = [{
 const initialCardsFlipped = initialCards.reverse();
 
 /* -------------------------------------------------------------------------- */
-/*                                  Wrappers                                  */
+/*                                  Popups                                    */
 /* -------------------------------------------------------------------------- */
 
 const editPopup = document.querySelector(".popup_type_edit");
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup_type_preview");
+const popupList = Array.from(document.querySelectorAll(".popup"));
 const places = document.querySelector(".places");
 const previewImage = document.querySelector(".popup__image-preview");
 
@@ -54,6 +55,7 @@ const addBtn = document.querySelector(".profile__add-button");
 const editPopupCloseBtn = editPopup.querySelector(".popup__close-button");
 const addPopupCloseBtn = addPopup.querySelector(".popup__close-button");
 const imagePopupCloseBtn = imagePopup.querySelector(".popup__close-button");
+const closeBtnList = Array.from(document.querySelectorAll(".popup__close-button"));
 
 /* -------------------------------------------------------------------------- */
 /*                                  Inputs                                    */
@@ -63,7 +65,8 @@ const popupInputName = editForm.querySelector(".popup__input_type_name");
 const popupInputProfession = editForm.querySelector(
     ".popup__input_type_profession"
 );
-
+const placeName = addForm.querySelector(".popup__input_type_title");
+const placeLink = addForm.querySelector(".popup__input_type_link");
 
 
 /* -------------------------------------------------------------------------- */
@@ -83,15 +86,9 @@ editForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
-editPopupCloseBtn.addEventListener("click", () => {
-    togglePopup(editPopup);
-});
-
 addBtn.addEventListener("click", () => togglePopup(addPopup));
 
 addForm.addEventListener("submit", (e) => {
-    const placeName = addForm.querySelector(".popup__input_type_title");
-    const placeLink = addForm.querySelector(".popup__input_type_link");
     const card = {
         name: placeName.value,
         link: placeLink.value,
@@ -102,12 +99,16 @@ addForm.addEventListener("submit", (e) => {
     addForm.reset();
 });
 
-addPopupCloseBtn.addEventListener("click", () => {
-    togglePopup(addPopup);
-});
+closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 
-imagePopupCloseBtn.addEventListener("click", () => {
-    togglePopup(imagePopup);
+document.addEventListener("keydown", closePopupEsc);
+
+popupList.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        if (e.target == e.currentTarget) {
+            closePopup(popupList);
+        };
+    });
 });
 
 /* -------------------------------------------------------------------------- */
@@ -116,7 +117,17 @@ imagePopupCloseBtn.addEventListener("click", () => {
 
 function togglePopup(popup) {
     popup.classList.toggle("popup_opened");
-}
+};
+
+function closePopup() {
+    popupList.forEach((popupEl) => popupEl.classList.remove("popup_opened"));
+};
+
+function closePopupEsc(evt) {
+    if (evt.key === "Escape") {
+        closePopup(popupList);
+    };
+};
 
 function createPlace(card) {
     const placesTemplate = document

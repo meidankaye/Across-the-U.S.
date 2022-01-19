@@ -20,9 +20,7 @@ const checkInputValidity = (formEl, inputEl, settings) => {
     }
 };
 
-const hasValidInputs = (inputList) => {
-    return inputList.every((inputEl) => {inputEl.validity.valid === true});
-};
+const hasValidInputs = (inputList) => inputList.every((inputEl) => inputEl.validity.valid);
 
 const toggleButton = (inputList, submitButton, settings) => {
     if (hasValidInputs(inputList)) {
