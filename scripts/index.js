@@ -73,7 +73,7 @@ addForm.addEventListener("submit", (e) => {
 closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 
 popupList.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("mousedown", (e) => {
         if (e.target == e.currentTarget) {
             closePopup(popupList);
         };
