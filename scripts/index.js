@@ -87,6 +87,10 @@ popupList.forEach((btn) => {
 function openPopup(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener("keydown", closePopupEsc);
+    const saveButton = popup.querySelector(".popup__button");
+    if (popup.contains(saveButton)) {
+        disableSubmitButton(saveButton);
+    }
 };
 
 function closePopup() {
