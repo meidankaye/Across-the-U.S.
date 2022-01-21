@@ -1,3 +1,8 @@
+//Hi Sergey, I hope I fixed what you meant...
+//None of my instructors are online and I want to turn this in as soon as possible, and I believe this is my last iteration.
+//I understood what you meant as far as I can tell, but I don't fully understand where it should be applied.
+
+
 const pageSettings = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
@@ -8,55 +13,55 @@ const pageSettings = {
 };
 
 
-const showInputError = (inputEl, formEl, settings) => {
+const showInputError = (inputEl, formEl) => {
     const errorMessage = formEl.querySelector("#" + inputEl.id + "-error");
     errorMessage.textContent = inputEl.validationMessage;
     errorMessage.classList.add(pageSettings.errorClass);
     inputEl.classList.add(pageSettings.inputErrorClass);
 }
 
-const hideInputError = (inputEl, formEl, settings) => {
+const hideInputError = (inputEl, formEl) => {
     const errorMessage = formEl.querySelector("#" + inputEl.id + "-error");
     errorMessage.textContent = "";
     errorMessage.classList.remove(pageSettings.errorClass);
     inputEl.classList.remove(pageSettings.inputErrorClass);
 }
 
-const checkInputValidity = (formEl, inputEl, settings) => {
+const checkInputValidity = (formEl, inputEl) => {
     if (inputEl.validity.valid) {
-        hideInputError(inputEl, formEl, settings);
+        hideInputError(inputEl, formEl);
     } else {
-        showInputError(inputEl, formEl, settings);
+        showInputError(inputEl, formEl);
     }
 };
 
 const hasValidInputs = (inputList) => inputList.every((inputEl) => inputEl.validity.valid);
 
-const toggleButton = (inputList, submitButton, settings) => {
+const toggleButton = (inputList, submitButton) => {
     if (hasValidInputs(inputList)) {
         submitButton.disabled = false;
         submitButton.classList.remove(pageSettings.inactiveButtonClass);
     } else {
-        disableSubmitButton(submitButton, settings);
+        disableSubmitButton(submitButton);
     }
 };
 
-const disableSubmitButton = (buttonElement, settings) => {
+const disableSubmitButton = (buttonElement) => {
     buttonElement.classList.add(pageSettings.inactiveButtonClass);
     buttonElement.disabled = true;
 };
 
 const setEventListeners = (formEl, settings) => {
-    const inputList = Array.from(formEl.querySelectorAll(pageSettings.inputSelector));
-    const submitButton = formEl.querySelector(pageSettings.submitButtonSelector);
+    const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
+    const submitButton = formEl.querySelector(settings.submitButtonSelector);
 
     toggleButton(inputList, submitButton);
 
     inputList.forEach((inputEl) => {
         inputEl.addEventListener("input", () => {
-            checkInputValidity(formEl, inputEl, settings);
+            checkInputValidity(formEl, inputEl);
 
-            toggleButton(inputList, submitButton, settings);
+            toggleButton(inputList, submitButton);
         });
     });
 };
