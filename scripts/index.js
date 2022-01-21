@@ -89,7 +89,7 @@ function openPopup(popup) {
     document.addEventListener("keydown", closePopupEsc);
     const saveButton = popup.querySelector(".popup__button");
     if (popup.contains(saveButton)) {
-        disableSubmitButton(saveButton);
+        disableSubmitButton(saveButton, pageSettings);
     }
 };
 
