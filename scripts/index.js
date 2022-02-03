@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const initialCards = [{
         name: "Yosemite Valley",
         link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
@@ -23,6 +24,9 @@ const initialCards = [{
         link: "https://code.s3.yandex.net/web-code/lago.jpg",
     },
 ];
+=======
+import FormValidator from "./FormValidator.js";
+>>>>>>> Stashed changes
 
 /* -------------------------------------------------------------------------- */
 /*                                  Wrappers                                  */
@@ -62,6 +66,24 @@ const popupInputProfession = editForm.querySelector(
     ".popup__input_text_profession"
 );
 
+
+/* -------------------------------------------------------------------------- */
+/*                                 Validation                                 */
+/* -------------------------------------------------------------------------- */
+
+const validationSettings = {
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+};
+
+const editFormValidator = new FormValidator(validationSettings, editForm);
+const addFormValidator = new FormValidator(validationSettings, addForm);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 
 /* -------------------------------------------------------------------------- */
@@ -112,8 +134,29 @@ imagePopupCloseBtn.addEventListener("click", () => {
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
 
+<<<<<<< Updated upstream
 function togglePopup(popup) {
     popup.classList.toggle("popup_opened");
+=======
+function openPopup(popup) {
+    popup.classList.add("popup_opened");
+    document.addEventListener("keydown", closePopupEsc);
+    const saveButton = popup.querySelector(".popup__button");
+    if (popup.contains(saveButton)) {
+        addFormValidator._disableSubmitButton(saveButton);
+    }
+};
+
+function closePopup() {
+    popupList.forEach((popup) => popup.classList.remove("popup_opened"));
+    document.removeEventListener("keydown", closePopupEsc);
+};
+
+function closePopupEsc(e) {
+    if (e.key === "Escape") {
+        closePopup(popupList);
+    }
+>>>>>>> Stashed changes
 }
 
 function createPlace(card) {
@@ -128,7 +171,6 @@ function createPlace(card) {
     const cardDeleteBtn = placeElement.querySelector(".place__trash");
 
     placeTitle.textContent = card.name;
-
     imageElem.style.backgroundImage = `url(${card.link})`;
 
     imageElem.addEventListener("click", function() {
