@@ -17,7 +17,7 @@ class FormValidator {
         inputEl.classList.add(this._inputErrorClass);
     }
 
-    _hideInputError = (inputEl, errorMessage) => {
+    _hideInputError = (inputEl) => {
         errorMessage = this._form.querySelector("#" + inputEl.id + "-error");
         errorMessage.textContent = "";
         errorMessage.classList.remove(this._errorClass);
@@ -25,6 +25,7 @@ class FormValidator {
     }
 
 
+    //need to fix
     _disableSubmitButton = (submitButton) => {
         submitButton.classList.add(this._inactiveButtonClass);
         submitButton.disabled = true;
@@ -35,9 +36,9 @@ class FormValidator {
 
     _checkInputValidity = (inputEl) => {
         if (inputEl.validity.valid) {
-            this._hideInputError(inputEl, inputEl.validationMessage);
+            this._hideInputError(inputEl);
         } else {
-            this._showInputError(inputEl);
+            this._showInputError(inputEl, inputEl.validationMessage);
         }
     }
 
@@ -55,6 +56,7 @@ class FormValidator {
         });
     }
 
+    //need to fix
     _toggleButton = () => {
         const submitButton = this._form.querySelector(this._submitButtonSelector);
 
