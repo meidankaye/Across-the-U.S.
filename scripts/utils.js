@@ -1,6 +1,6 @@
 export const imagePopup = document.querySelector(".popup_type_preview");
-export const previewImage = imagePopup.querySelector(".popup__image-preview");
-export const previewTitle = imagePopup.querySelector(".popup__image-name");
+export const previewImage = document.querySelector(".popup__image-preview");
+export const previewTitle = document.querySelector(".popup__image-name");
 export const popupList = Array.from(document.querySelectorAll(".popup"));
 
 export const openPopup = (popup) => {

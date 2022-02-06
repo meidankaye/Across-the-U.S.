@@ -11,17 +11,17 @@ class Card {
         this._cardTemplate = cardSelector.content.querySelector(".places__item");
     }
 
-    _setEventListeners() {
+    _setEventListeners = () => {
         this._imageElem = this._cardElement.querySelector(".place__image");
         this._cardLikeBtn = this._cardElement.querySelector(".place__button");
         this._cardDeleteBtn = this._cardElement.querySelector(".place__trash");
 
-        this._imageElem.addEventListener("click", () => this._handlePreviewImage);
+        this._imageElem.addEventListener("click", this._handlePreviewImage);
         this._cardLikeBtn.addEventListener("click", this._handleLikeButton);
         this._cardDeleteBtn.addEventListener("click", this._handleDeleteButton);
     }
 
-    _handlePreviewImage() {
+    _handlePreviewImage = () => {
         previewImage.src = this._link;
         previewTitle.textContent = this._name;
         openPopup(imagePopup);
@@ -31,7 +31,7 @@ class Card {
 
     _handleDeleteButton = () => this._cardElement.remove();
 
-    getElement() {
+    getElement = () => {
         this._cardElement = this._cardTemplate.cloneNode(true);
         this._setEventListeners();
 
