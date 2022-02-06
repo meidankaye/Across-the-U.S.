@@ -6,9 +6,6 @@ export const popupList = Array.from(document.querySelectorAll(".popup"));
 export const openPopup = (popup) => {
     popup.classList.add("popup_opened");
     document.addEventListener("keydown", closePopupEsc);
-    // if (popup.contains(submitButtonSelector)) {
-    //     addFormValidator.disableSubmitButton(submitButtonSelector);
-    // }
 };
 
 export const closePopup = () => {

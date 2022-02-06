@@ -55,8 +55,8 @@ const validationSettings = {
 const editFormValidator = new FormValidator(validationSettings, editForm);
 const addFormValidator = new FormValidator(validationSettings, addForm);
 
-// editFormValidator.enableValidation();
-// addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 
 /* -------------------------------------------------------------------------- */
@@ -76,13 +76,12 @@ editForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
-addBtn.addEventListener("click", () => openPopup(addPopup));
+addBtn.addEventListener("click", () => {
+    addFormValidator.resetFormValidation(addForm);
+    openPopup(addPopup);
+});
 
 addForm.addEventListener("submit", (e) => {
-    // const card = {
-    //     name: placeName.value,
-    //     link: placeLink.value,
-    // };
     renderPlace({
         name: placeName.value,
         link: placeLink.value
@@ -97,38 +96,6 @@ closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
-
-// const handleLikeButton = (e) => {
-//     e.target.classList.toggle("place__button_active");
-// };
-
-// const handleDeleteButton = (e) => {
-//     e.target.placeElement.remove();
-// };
-
-// const handlePreviewImage = (data) => {
-//     previewImage.src = data.link;
-//     previewTitle.textContent = data.name;
-//     openPopup(imagePopup);
-// };
-
-// function createPlace(card) {
-//     const placeElement = placesTemplate.cloneNode(true);
-//     const placeTitle = placeElement.querySelector(".place__title");
-//     const imageElem = placeElement.querySelector(".place__image");
-//     const cardLikeBtn = placeElement.querySelector(".place__button");
-//     const cardDeleteBtn = placeElement.querySelector(".place__trash");
-
-//     placeTitle.textContent = card.name;
-
-//     imageElem.style.backgroundImage = `url(${card.link})`;
-
-//     imageElem.addEventListener("click", () => handlePreviewImage(data));
-//     cardLikeBtn.addEventListener("click", handleLikeButton);
-//     cardDeleteBtn.addEventListener("click", handleDeleteButton);
-
-//     return placeElement;
-// }
 
 const cardTemplateSelector = document.querySelector("#place-template");
 
