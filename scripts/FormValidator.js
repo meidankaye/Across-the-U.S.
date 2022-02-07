@@ -11,20 +11,20 @@ class FormValidator {
     }
 
     _showInputError = (inputEl) => {
-        const errorMessage = this._form.querySelector("#" + inputEl.id + "-error");
+        const errorMessage = this._form.querySelector(`#${inputEl.id}-error`);
         errorMessage.textContent = inputEl.validationMessage;
         errorMessage.classList.add(this._errorClass);
         inputEl.classList.add(this._inputErrorClass);
     }
 
     _hideInputError = (inputEl) => {
-        const errorMessage = this._form.querySelector("#" + inputEl.id + "-error");
+        const errorMessage = this._form.querySelector(`#${inputEl.id}-error`);
         errorMessage.textContent = "";
         errorMessage.classList.remove(this._errorClass);
         inputEl.classList.remove(this._inputErrorClass);
     }
 
-    _hasValidInputs = () => this._inputList.every((inputEl) => inputEl.validity.valid);
+    _hasOnlyValidInputs = () => this._inputList.every((inputEl) => inputEl.validity.valid);
 
 
     _checkInputValidity = (inputEl) => {
@@ -52,7 +52,7 @@ class FormValidator {
     _toggleButton = () => {
         const submitButton = this._form.querySelector(this._submitButtonSelector);
 
-        if (this._hasValidInputs()) {
+        if (this._hasOnlyValidInputs()) {
             submitButton.disabled = false;
             submitButton.classList.remove(this._inactiveButtonClass);
         } else {

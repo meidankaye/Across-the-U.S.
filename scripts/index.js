@@ -82,12 +82,12 @@ addBtn.addEventListener("click", () => {
 });
 
 addForm.addEventListener("submit", (e) => {
+    e.preventDefault();
     renderPlace({
         name: placeName.value,
         link: placeLink.value
     }, places);
     closePopup(addPopup);
-    e.preventDefault();
     addForm.reset();
 });
 
@@ -97,10 +97,10 @@ closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
 
-const cardTemplateSelector = document.querySelector("#place-template");
+const cardTemplate = document.querySelector("#place-template");
 
 function renderPlace(data, container) {
-    const card = new Card(data, cardTemplateSelector);
+    const card = new Card(data, cardTemplate);
     container.prepend(card.getElement());
 }
 

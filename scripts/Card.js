@@ -7,8 +7,6 @@ class Card {
         this._link = data.link;
 
         this._cardSelector = cardSelector;
-
-        this._cardTemplate = cardSelector.content.querySelector(".places__item");
     }
 
     _setEventListeners = () => {
@@ -23,16 +21,23 @@ class Card {
 
     _handlePreviewImage = () => {
         previewImage.src = this._link;
+        previewImage.alt = `Image of ${this._name}`;
         previewTitle.textContent = this._name;
         openPopup(imagePopup);
     }
 
-    _handleLikeButton = e => e.target.classList.toggle("place__button_active");
+    _handleLikeButton = () => this._cardLikeBtn.classList.toggle("place__button_active");
 
     _handleDeleteButton = () => this._cardElement.remove();
 
+    _getTemplate = () => {
+        return this._cardSelector
+        .content.querySelector(".places__item")
+        .cloneNode(true);
+    }
+
     getElement = () => {
-        this._cardElement = this._cardTemplate.cloneNode(true);
+        this._cardElement = this._getTemplate();
         this._setEventListeners();
 
         this._cardElement.querySelector(
