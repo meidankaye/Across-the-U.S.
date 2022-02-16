@@ -1,19 +1,22 @@
-const path = require('path');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    main: './src/index.js'
+    main: "./src/index.js"
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-    publicPath: ''
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    publicPath: ""
   },
   target: ['web', 'es5'],
-  mode: 'development',
+  stats: { children: true },
+  mode: "development",
   devServer: {
-    static: path.resolve(__dirname, './dist'),
+    static: path.resolve(__dirname, "./dist"),
     compress: true,
     port: 8080,
     open: true
@@ -26,5 +29,11 @@ module.exports = {
         exclude: "/node_modules/"
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html"
+    }),
+    new CleanWebpackPlugin(),
+  ],
 }
