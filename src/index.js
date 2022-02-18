@@ -3,6 +3,8 @@ import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
 import { openPopup, closePopup } from "./components/utils.js";
 
+//let's see
+
 
 const initialCards = [{
     name: "Yosemite Valley",
