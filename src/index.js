@@ -1,7 +1,19 @@
 import "./index.css";
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
+import Section from "./components/Section.js";
+import Popup from "./components/Popup.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 import { openPopup, closePopup } from "./components/utils.js";
+
+const imagePopup = new PopupWithImage(".popup_type_preview");
+imagePopup.setEventListeners();
+
+const editPopup = new PopupWithForm(".popup_type_edit", () => {
+    console.log("!!!");
+});
+editPopup.setEventListeners();
 
 
 const initialCards = [{
@@ -36,7 +48,7 @@ initialCards.reverse();
 /*                                  Popups                                    */
 /* -------------------------------------------------------------------------- */
 
-const editPopup = document.querySelector(".popup_type_edit");
+// const editPopup = document.querySelector(".popup_type_edit");
 const addPopup = document.querySelector(".popup_type_add");
 const places = document.querySelector(".places");
 
@@ -44,7 +56,7 @@ const places = document.querySelector(".places");
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-const editForm = editPopup.querySelector(".popup__form");
+const editForm = document.querySelector(".popup__form");
 const addForm = addPopup.querySelector(".popup__form");
 
 /* -------------------------------------------------------------------------- */
@@ -94,15 +106,16 @@ addFormValidator.enableValidation();
 /* -------------------------------------------------------------------------- */
 
 editBtn.addEventListener("click", () => {
-    popupInputName.value = profileName.textContent;
-    popupInputProfession.value = profileProfession.textContent;
-    openPopup(editPopup);
+    // popupInputName.value = profileName.textContent;
+    // popupInputProfession.value = profileProfession.textContent;
+    // openPopup(editPopup);
+    editPopup.open();
 });
 
 editForm.addEventListener("submit", (e) => {
     profileName.textContent = popupInputName.value;
     profileProfession.textContent = popupInputProfession.value;
-    closePopup(editPopup);
+    // closePopup(editPopup);
     e.preventDefault();
 });
 
@@ -117,11 +130,11 @@ addForm.addEventListener("submit", (e) => {
         name: placeName.value,
         link: placeLink.value
     }, places);
-    closePopup(addPopup);
+    // closePopup(addPopup);
     addForm.reset();
 });
 
-closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
+// closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -130,7 +143,9 @@ closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 const cardTemplate = document.querySelector("#place-template");
 
 function renderPlace(data, container) {
-    const card = new Card(data, cardTemplate);
+    const card = new Card(data, cardTemplate, (name, link) => {
+        imagePopup.open(name, link)
+    });
     container.prepend(card.getElement());
 }
 

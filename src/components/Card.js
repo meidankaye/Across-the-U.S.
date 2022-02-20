@@ -2,7 +2,7 @@ import { previewImage, previewTitle, imagePopup, openPopup} from "./utils.js"
 
 class Card {
 
-    constructor({ data, handleCardClick }, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
@@ -15,18 +15,14 @@ class Card {
         this._cardLikeBtn = this._cardElement.querySelector(".place__button");
         this._cardDeleteBtn = this._cardElement.querySelector(".place__trash");
 
-        this._imageElem.addEventListener("click", this._handlePreviewImage.bind(this));
+        this._imageElem.addEventListener("click", () => this._handleCardClick(this._name, this._link));
         this._cardLikeBtn.addEventListener("click", this._handleLikeButton);
         this._cardDeleteBtn.addEventListener("click", this._handleDeleteButton);
     }
 
-    _handlePreviewImage = () => {
-        // previewImage.src = this._link;
-        // previewImage.alt = `Image of ${this._name}`;
-        // previewTitle.textContent = this._name;
-        // openPopup(imagePopup);
-        this._handleCardClick({name: this._name, link: this._link})
-    }
+    // _handlePreviewImage = () => {
+    //     this._handleCardClick({name: this._name, link: this._link})
+    // }
 
     _handleLikeButton = () => this._cardLikeBtn.classList.toggle("place__button_active");
 
