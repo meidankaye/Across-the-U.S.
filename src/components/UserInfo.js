@@ -1,3 +1,5 @@
+// Work in Progress
+
 class UserInfo {
 
     constructor({ nameSelector, professionSelector }) {

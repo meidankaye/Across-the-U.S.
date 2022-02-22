@@ -10,10 +10,25 @@ import { openPopup, closePopup } from "./components/utils.js";
 const imagePopup = new PopupWithImage(".popup_type_preview");
 imagePopup.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup_type_edit", () => {
-    console.log("!!!");
+const editPopup = new PopupWithForm(".popup_type_edit", (data) => {
+
+    profileName.textContent = data.name;
+    profileProfession.textContent = data.profession;
+
 });
+
 editPopup.setEventListeners();
+
+const addPopup = new PopupWithForm(".popup_type_add", (data) => {
+
+    renderPlace({
+        name: data.title,
+        link: data.link
+    }, places)
+
+});
+
+addPopup.setEventListeners();
 
 
 const initialCards = [{
@@ -49,15 +64,15 @@ initialCards.reverse();
 /* -------------------------------------------------------------------------- */
 
 // const editPopup = document.querySelector(".popup_type_edit");
-const addPopup = document.querySelector(".popup_type_add");
+// const addPopup = document.querySelector(".popup_type_add");
 const places = document.querySelector(".places");
 
 /* -------------------------------------------------------------------------- */
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-const editForm = document.querySelector(".popup__form");
-const addForm = addPopup.querySelector(".popup__form");
+const editForm = document.querySelector(".popup_type_edit").querySelector(".popup__form");
+const addForm = document.querySelector(".popup_type_add").querySelector(".popup__form");
 
 /* -------------------------------------------------------------------------- */
 /*                            Buttons and DOM nodes                           */
@@ -73,10 +88,10 @@ const closeBtnList = Array.from(document.querySelectorAll(".popup__close-button"
 /*                                  Inputs                                    */
 /* -------------------------------------------------------------------------- */
 
-const popupInputName = document.querySelector(".popup__input_type_name");
-const popupInputProfession = document.querySelector(
-    ".popup__input_type_profession"
-);
+// const popupInputName = document.querySelector(".popup__input_type_name");
+// const popupInputProfession = document.querySelector(
+//     ".popup__input_type_profession"
+// );
 const placeName = document.querySelector(".popup__input_type_title");
 const placeLink = document.querySelector(".popup__input_type_link");
 
@@ -112,27 +127,28 @@ editBtn.addEventListener("click", () => {
     editPopup.open();
 });
 
-editForm.addEventListener("submit", (e) => {
-    profileName.textContent = popupInputName.value;
-    profileProfession.textContent = popupInputProfession.value;
-    // closePopup(editPopup);
-    e.preventDefault();
-});
+// editForm.addEventListener("submit", (e) => {
+//     // profileName.textContent = popupInputName.value;
+//     // profileProfession.textContent = popupInputProfession.value;
+//     // closePopup(editPopup);
+//     e.preventDefault();
+// });
 
 addBtn.addEventListener("click", () => {
     addFormValidator.resetFormValidation(addForm);
-    openPopup(addPopup);
+    addPopup.open();
+    // openPopup(addPopup);
 });
 
-addForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    renderPlace({
-        name: placeName.value,
-        link: placeLink.value
-    }, places);
-    // closePopup(addPopup);
-    addForm.reset();
-});
+// addForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     renderPlace({
+//         name: placeName.value,
+//         link: placeLink.value
+//     }, places);
+//     // closePopup(addPopup);
+//     addForm.reset();
+// });
 
 // closeBtnList.forEach((btn) => btn.addEventListener("click", closePopup));
 
@@ -146,7 +162,7 @@ function renderPlace(data, container) {
     const card = new Card(data, cardTemplate, (name, link) => {
         imagePopup.open(name, link)
     });
-    container.prepend(card.getElement());
+container.prepend(card.getElement());
 }
 
 initialCards.forEach((data) => {

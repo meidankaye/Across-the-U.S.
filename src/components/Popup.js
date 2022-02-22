@@ -3,6 +3,7 @@ class Popup {
     constructor(popupSelector) {
         this._popupElement = document.querySelector(popupSelector);
         this._handleEscUp = this._handleEscUp.bind(this);
+        this.close = this.close.bind(this);
     }
 
     _handleEscUp(e) {
@@ -23,7 +24,7 @@ class Popup {
         this.setEventListeners();
     }
 
-    close = () => {
+    close() {
         this._popupElement.classList.remove("popup_opened");
         document.addEventListener("keyup", this._handleEscUp);
     }
