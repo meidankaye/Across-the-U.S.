@@ -3,8 +3,8 @@
 class UserInfo {
 
     constructor({ nameSelector, professionSelector }) {
-        this._userName = nameSelector;
-        this._userProfession = professionSelector;
+        this._userName = document.querySelector(nameSelector);
+        this._userProfession = document.querySelector(professionSelector);
     }
 
     getUserInfo() {
@@ -12,6 +12,11 @@ class UserInfo {
             name: this._userName.textContent,
             profession: this._userProfession.textContent 
         };
+    }
+
+    setUserInfo({ name, profession }) {
+        this._userName.textContent = name
+        this._userProfession.textContent = profession
     }
 
 }

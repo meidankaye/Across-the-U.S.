@@ -1,13 +1,11 @@
-import { previewImage, previewTitle, imagePopup, openPopup} from "./utils.js"
-
 class Card {
 
     constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
-        this._handleCardClick = handleCardClick;
 
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _setEventListeners = () => {
@@ -19,10 +17,6 @@ class Card {
         this._cardLikeBtn.addEventListener("click", this._handleLikeButton);
         this._cardDeleteBtn.addEventListener("click", this._handleDeleteButton);
     }
-
-    // _handlePreviewImage = () => {
-    //     this._handleCardClick({name: this._name, link: this._link})
-    // }
 
     _handleLikeButton = () => this._cardLikeBtn.classList.toggle("place__button_active");
 
