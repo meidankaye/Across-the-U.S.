@@ -1,15 +1,13 @@
 import "./index.css";
-import initialCards from "./utils/initialcards.js";
-import Section from "./components/Section.js";
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
+import initialCards from "../utils/initialcards.js";
+import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession } from "../utils/constants.js";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
-
-const places = document.querySelector(".places");
-const cardTemplate = document.querySelector("#place-template");
 
 function renderPlace(data, container) {
     const card = new Card(data, cardTemplate, (name, link) => {
@@ -52,22 +50,6 @@ const addPopup = new PopupWithForm(".popup_type_add", (data) => {
 });
 
 addPopup.setSubmitEventListeners();
-
-
-// Forms
-
-const editForm = document.querySelector(".popup_type_edit").querySelector(".popup__form");
-const addForm = document.querySelector(".popup_type_add").querySelector(".popup__form");
-
-// Buttons
-
-const editBtn = document.querySelector(".profile__edit-button");
-const addBtn = document.querySelector(".profile__add-button");
-
-// Inputs
-
-const popupInputName = document.querySelector(".popup__input_type_name");
-const popupInputProfession = document.querySelector(".popup__input_type_profession");
 
 // Validation
 
