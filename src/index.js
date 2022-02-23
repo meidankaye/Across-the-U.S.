@@ -54,30 +54,22 @@ const addPopup = new PopupWithForm(".popup_type_add", (data) => {
 addPopup.setSubmitEventListeners();
 
 
-/* -------------------------------------------------------------------------- */
-/*                                    Forms                                   */
-/* -------------------------------------------------------------------------- */
+// Forms
 
 const editForm = document.querySelector(".popup_type_edit").querySelector(".popup__form");
 const addForm = document.querySelector(".popup_type_add").querySelector(".popup__form");
 
-/* -------------------------------------------------------------------------- */
-/*                            Buttons                                         */
-/* -------------------------------------------------------------------------- */
+// Buttons
 
 const editBtn = document.querySelector(".profile__edit-button");
 const addBtn = document.querySelector(".profile__add-button");
 
-/* -------------------------------------------------------------------------- */
-/*                                  Inputs                                    */
-/* -------------------------------------------------------------------------- */
+// Inputs
 
 const popupInputName = document.querySelector(".popup__input_type_name");
 const popupInputProfession = document.querySelector(".popup__input_type_profession");
 
-/* -------------------------------------------------------------------------- */
-/*                                 Validation                                 */
-/* -------------------------------------------------------------------------- */
+// Validation
 
 const validationSettings = {
     inputSelector: ".popup__input",
@@ -93,6 +85,7 @@ const addFormValidator = new FormValidator(validationSettings, addForm);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
+//Event Listeners
 
 editBtn.addEventListener("click", () => {
     const data = userInfo.getUserInfo()
