@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    main: './src/page/index.js'
+    main: './src/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -56,7 +56,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/page/index.js" // path to our index.html file
+      template: "./src/index.html" // path to our index.html file
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin() // connect the plugin for merging CSS files
