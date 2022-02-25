@@ -38,7 +38,7 @@ class FormValidator {
 
     _setEventListeners = () => {
         this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    
+        this._submitButton = this._form.querySelector(this._submitButtonSelector);
         this._toggleButton();
     
         this._inputList.forEach((inputEl) => {
@@ -50,14 +50,13 @@ class FormValidator {
     }
 
     _toggleButton = () => {
-        const submitButton = this._form.querySelector(this._submitButtonSelector);
 
         if (this._hasOnlyValidInputs()) {
-            submitButton.disabled = false;
-            submitButton.classList.remove(this._inactiveButtonClass);
+            this._submitButton.disabled = false;
+            this._submitButton.classList.remove(this._inactiveButtonClass);
         } else {
-            submitButton.classList.add(this._inactiveButtonClass);
-            submitButton.disabled = true;
+            this._submitButton.classList.add(this._inactiveButtonClass);
+            this._submitButton.disabled = true;
         }
     }
 

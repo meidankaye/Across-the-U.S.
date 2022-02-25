@@ -9,3 +9,11 @@ export const addBtn = document.querySelector(".profile__add-button");
 
 export const popupInputName = document.querySelector(".popup__input_type_name");
 export const popupInputProfession = document.querySelector(".popup__input_type_profession");
+
+export const validationSettings = {
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+};

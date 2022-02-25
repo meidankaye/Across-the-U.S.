@@ -32,9 +32,7 @@ class Card {
         this._cardElement = this._getTemplate();
         this._setEventListeners();
 
-        this._cardElement.querySelector(
-            ".place__image"
-        ).style.backgroundImage = `url(${this._link})`;
+        this._imageElem.style.backgroundImage = `url(${this._link})`;
         
         this._cardElement.querySelector(".place__title").textContent = this._name;
 

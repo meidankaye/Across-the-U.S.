@@ -1,20 +1,26 @@
 import "./index.css";
-import initialCards from "./utils/initialcards.js";
-import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession } from "./utils/constants.js";
-import Section from "./components/Section.js";
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
+import initialCards from "../utils/initialcards.js";
+import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 
 function renderPlace(data, container) {
     const card = new Card(data, cardTemplate, (name, link) => {
         imagePopup.open(name, link)
     });
-container.prepend(card.getElement());
+    section.addItem(card.getElement());
 }
+
+
+// function createCard(item) {
+//     // here you create a card
+//   return cardElement
+// }
 
 
 const section = new Section({
@@ -38,28 +44,16 @@ const editPopup = new PopupWithForm(".popup_type_edit", (data) => {
     userInfo.setUserInfo(data)
 });
 
-editPopup.setSubmitEventListeners();
+editPopup.setEventListeners();
 
 const addPopup = new PopupWithForm(".popup_type_add", (data) => {
-
     renderPlace({
         name: data.title,
         link: data.link
     }, places)
-
 });
 
-addPopup.setSubmitEventListeners();
-
-// Validation
-
-const validationSettings = {
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible"
-};
+addPopup.setEventListeners();
 
 const editFormValidator = new FormValidator(validationSettings, editForm);
 const addFormValidator = new FormValidator(validationSettings, addForm);
@@ -74,10 +68,11 @@ editBtn.addEventListener("click", () => {
     editPopup.open();
     popupInputName.value = data.name;
     popupInputProfession.value = data.profession;
+    editFormValidator.resetFormValidation();
 });
 
 
 addBtn.addEventListener("click", () => {
-    addFormValidator.resetFormValidation(addForm);
+    addFormValidator.resetFormValidation();
     addPopup.open();
 });
