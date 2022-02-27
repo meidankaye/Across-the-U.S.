@@ -9,16 +9,19 @@ class Card {
     }
 
     _setEventListeners = () => {
-        this._imageElem = this._cardElement.querySelector(".place__image");
-        this._cardLikeBtn = this._cardElement.querySelector(".place__button");
-        this._cardDeleteBtn = this._cardElement.querySelector(".place__trash");
+        this._cardElement.querySelector(".place__image")
+        .addEventListener("click", () => this._handleCardClick(this._name, this._link));
 
-        this._imageElem.addEventListener("click", () => this._handleCardClick(this._name, this._link));
-        this._cardLikeBtn.addEventListener("click", this._handleLikeButton);
-        this._cardDeleteBtn.addEventListener("click", this._handleDeleteButton);
+        this._cardElement.querySelector(".place__button")
+        .addEventListener("click", this._handleLikeButton);
+
+        this._cardElement.querySelector(".place__trash")
+        .addEventListener("click", this._handleDeleteButton);
     }
 
-    _handleLikeButton = () => this._cardLikeBtn.classList.toggle("place__button_active");
+    _handleLikeButton = () => this._cardElement.querySelector(".place__button")
+    .classList.toggle("place__button_active");
+    
 
     _handleDeleteButton = () => this._cardElement.remove();
 
@@ -32,7 +35,8 @@ class Card {
         this._cardElement = this._getTemplate();
         this._setEventListeners();
 
-        this._imageElem.style.backgroundImage = `url(${this._link})`;
+        this._cardElement.querySelector(".place__image")
+        .style.backgroundImage = `url(${this._link})`;
         
         this._cardElement.querySelector(".place__title").textContent = this._name;
 

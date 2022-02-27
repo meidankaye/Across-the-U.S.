@@ -8,26 +8,27 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-
-function renderPlace(data, container) {
-    const card = new Card(data, cardTemplate, (name, link) => {
-        imagePopup.open(name, link)
-    });
-    section.addItem(card.getElement());
+function createCard(card) {
+    const newCard = new Card({
+        name: card.name,
+        link: card.link
+    },
+    cardTemplate, handleCardClick,
+    )
+    return newCard.getElement()
 }
 
+function renderPlace(card) {
+    section.addItem(createCard(card));
+}
 
-// function createCard(item) {
-//     // here you create a card
-//   return cardElement
-// }
-
+function handleCardClick (name, link) {
+    imagePopup.open(name, link);
+}
 
 const section = new Section({
     items: initialCards,
-    renderer: (data) => {
-        renderPlace(data, places)
-    }
+    renderer: renderPlace,
 }, ".places");
 
 section.render();
