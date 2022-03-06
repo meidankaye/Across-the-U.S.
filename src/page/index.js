@@ -1,12 +1,32 @@
+import "regenerator-runtime/runtime";
 import "./index.css";
-import initialCards from "../utils/initialcards.js";
-import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
+
+import { cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+
+// API
+
+const api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/group-12",
+    token: "439544b2-326e-4000-bd7d-7d8ec93af705"
+});
+
+api.getInitialCards().then(cards => {
+    section.render(cards);
+});
+
+// api.getUserInfo().then(userData => {
+//     userInfo.setUserInfo({ name: userData.name, profession: userData.about })
+// });
+
+
+// Functions
 
 function createCard(card) {
     const newCard = new Card({
@@ -18,17 +38,25 @@ function createCard(card) {
     return newCard.getElement()
 }
 
-function renderPlace(card) {
-    section.addItem(createCard(card));
-}
-
 function handleCardClick (name, link) {
     imagePopup.open(name, link);
 }
 
+function handleAddFormSubmit() {
+    const inputValues = addPopup._getInputValues();
+    const card = { name: inputValues.title, link: inputValues.link };
+    section.addItem(createCard(card));
+}
+
+function handleEditFormSubmit(data) {
+    userInfo.setUserInfo(data)
+}
+
+// Classes
 const section = new Section({
-    items: initialCards,
-    renderer: renderPlace,
+    renderer: (card) => {
+        section.addItem(createCard(card));
+    }
 }, ".places");
 
 section.render();
@@ -41,18 +69,11 @@ const userInfo = new UserInfo({
 const imagePopup = new PopupWithImage(".popup_type_preview");
 imagePopup.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup_type_edit", (data) => {
-    userInfo.setUserInfo(data)
-});
+const editPopup = new PopupWithForm(".popup_type_edit", handleEditFormSubmit);
 
 editPopup.setEventListeners();
 
-const addPopup = new PopupWithForm(".popup_type_add", (data) => {
-    renderPlace({
-        name: data.title,
-        link: data.link
-    }, places)
-});
+const addPopup = new PopupWithForm(".popup_type_add", handleAddFormSubmit);
 
 addPopup.setEventListeners();
 
