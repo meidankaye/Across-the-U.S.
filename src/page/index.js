@@ -1,7 +1,7 @@
 import "regenerator-runtime/runtime";
 import "./index.css";
 
-import { cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
+import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -9,6 +9,33 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+
+
+const initialCards = [{
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+},
+{
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+},
+{
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+},
+{
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+},
+{
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+},
+{
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+},
+];
 
 // API
 
@@ -21,9 +48,9 @@ api.getInitialCards().then(cards => {
     section.render(cards);
 });
 
-// api.getUserInfo().then(userData => {
-//     userInfo.setUserInfo({ name: userData.name, profession: userData.about })
-// });
+api.getUserInfo().then(userData => {
+    userInfo.setUserInfo({ name: userData.name, profession: userData.about })
+});
 
 
 // Functions
@@ -58,8 +85,6 @@ const section = new Section({
         section.addItem(createCard(card));
     }
 }, ".places");
-
-section.render();
 
 const userInfo = new UserInfo({
     nameSelector: ".profile__name",

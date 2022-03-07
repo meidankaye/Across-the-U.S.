@@ -9,7 +9,7 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       headers: { authorization: this._token }
     })
-    .then(res => {res.ok ? res.json() : Promise.reject(`Error: ${res.status}`) })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => {
       console.log(err);
     });
@@ -19,7 +19,7 @@ export default class Api {
     return fetch(`${this._url}/users/me`, {
       headers: { authorization: this._token }
     })
-    .then(res => {res.ok ? res.json() : Promise.reject(`Error: ${res.status}`) })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => {
       console.log(err);
     });
