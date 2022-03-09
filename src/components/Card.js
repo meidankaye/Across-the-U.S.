@@ -1,11 +1,17 @@
 class Card {
 
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, handleDeleteCardClick) {
         this._name = data.name;
         this._link = data.link;
+        this._id = data.id;
 
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteCardClick = handleDeleteCardClick;
+    }
+
+    getID() {
+        return this._id;
     }
 
     _setEventListeners = () => {

@@ -25,18 +25,36 @@ export default class Api {
     });
   }
 
-  async addCard(name, link) {
-    const res = await fetch(`${this._url}/cards`, {
+  addCard({ name, link }) {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: { authorization: this._token, "Content-Type": "application/json" },
-      body: JSON.stringify({ name, link })
+      headers: {
+         authorization: this._token,
+         "Content-Type": "application/json" 
+      },
+      body: JSON.stringify({
+         name,
+         link 
+      })
     })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
-    if (res.ok) {
-      return { name, link };
-    } else {
-      console.log(`Error: ${res.status}`);
-    }
+  removeCard(cardID) {
+    return fetch(`${this._url}/cards/${cardID}`, {
+      method: 'DELETE',
+      headers: {
+         authorization: this._token,
+         "Content-Type": "application/json" 
+      }
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
 }

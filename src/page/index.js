@@ -1,7 +1,7 @@
 import "regenerator-runtime/runtime";
 import "./index.css";
 
-import { places, cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
+import { cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -10,33 +10,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
-
-const initialCards = [{
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-},
-{
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-},
-{
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-},
-{
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-},
-{
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-},
-{
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-},
-];
-
 // API
 
 const api = new Api({
@@ -44,13 +17,18 @@ const api = new Api({
     token: "439544b2-326e-4000-bd7d-7d8ec93af705"
 });
 
-api.getInitialCards().then(cards => {
-    section.render(cards);
-});
+api.removeCard("6226659ed3c3a60148c038f7").then(res => console.log(res))
 
-api.getUserInfo().then(userData => {
-    userInfo.setUserInfo({ name: userData.name, profession: userData.about })
-});
+
+function init() {
+    api.getInitialCards().then(cards => {
+        section.render(cards);
+    });
+    
+    api.getUserInfo().then(userData => {
+        userInfo.setUserInfo({ name: userData.name, profession: userData.about })
+    });
+}
 
 
 // Functions
@@ -71,8 +49,10 @@ function handleCardClick (name, link) {
 
 function handleAddFormSubmit() {
     const inputValues = addPopup._getInputValues();
-    const card = { name: inputValues.title, link: inputValues.link };
-    section.addItem(createCard(card));
+    const data = { name: inputValues.title, link: inputValues.link };
+    api.addCard(data).then(data => {
+        section.addItem(createCard(data));
+    })
 }
 
 function handleEditFormSubmit(data) {
