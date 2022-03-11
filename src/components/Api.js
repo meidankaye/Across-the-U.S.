@@ -1,59 +1,54 @@
 export default class Api {
 
-  constructor(options) {
-    this._url = options.baseUrl;
-    this._token = options.token;
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
+  _customFetch = (url, headers) => {
+    return fetch(url, headers)
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      });
+  };
+
   getInitialCards() {
-    return fetch(`${this._url}/cards`, {
-      headers: { authorization: this._token }
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
+    return this._customFetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
     });
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
-      headers: { authorization: this._token }
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
+    return this._customFetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
     });
   }
 
   addCard({ name, link }) {
-    return fetch(`${this._url}/cards`, {
+    return this._customFetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
       method: 'POST',
-      headers: {
-         authorization: this._token,
-         "Content-Type": "application/json" 
-      },
       body: JSON.stringify({
          name,
          link 
       })
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
     });
   }
 
   removeCard(cardID) {
-    return fetch(`${this._url}/cards/${cardID}`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardID}`, {
+      headers: this._headers,
       method: 'DELETE',
-      headers: {
-         authorization: this._token,
-         "Content-Type": "application/json" 
-      }
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
+    });
+  }
+
+  likeCard(cardID) {
+    return this._customFetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+      headers: this._headers,
+      method: 'PUT',
     });
   }
 

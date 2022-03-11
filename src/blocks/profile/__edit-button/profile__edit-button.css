@@ -6,6 +6,7 @@
     background-size: cover;
     min-height: 24px;
     margin-top: 15px;
+    transition: visibility 0.1s, opacity 0.1s linear;
 }
 
 .profile__edit-button:hover{ 

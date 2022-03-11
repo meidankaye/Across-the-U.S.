@@ -7,40 +7,55 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PoupWithConfimation.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+
+let userId;
 
 // API
 
 const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-12",
-    token: "439544b2-326e-4000-bd7d-7d8ec93af705"
+    headers: {
+        authorization: "439544b2-326e-4000-bd7d-7d8ec93af705",
+        "Content-Type": "application/json",
+    },
 });
 
-api.removeCard("6226659ed3c3a60148c038f7").then(res => console.log(res))
 
-
-function init() {
-    api.getInitialCards().then(cards => {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+    .then(([cards, userData]) => {
+        userId = userData._id;
         section.render(cards);
-    });
-    
-    api.getUserInfo().then(userData => {
-        userInfo.setUserInfo({ name: userData.name, profession: userData.about })
-    });
-}
 
+        userInfo.setUserInfo({ name: userData.name, profession: userData.about })
+    })
 
 // Functions
 
-function createCard(card) {
+function createCard(data) {
     const newCard = new Card({
-        name: card.name,
-        link: card.link
-    },
-    cardTemplate, handleCardClick,
-    )
-    return newCard.getElement()
+        data,
+        handleCardClick,
+        handleLikeButton: (id) => {
+            api.likeCard(id).then((res) => {
+                newCard.handleLikeCard(res.likes);
+                console.log(res.likes);
+            })
+        }, 
+        handleDeleteCard: (id) => {
+            confirmPopup.open();
+            confirmPopup.setAction(() => {
+                api.removeCard(id).then(() => {
+                    newCard.removeCard();
+                    confirmPopup.close();
+                })
+            })
+        }
+    }, cardTemplate, userId)
+
+    return newCard.getElement();
 }
 
 function handleCardClick (name, link) {
@@ -50,8 +65,8 @@ function handleCardClick (name, link) {
 function handleAddFormSubmit() {
     const inputValues = addPopup._getInputValues();
     const data = { name: inputValues.title, link: inputValues.link };
-    api.addCard(data).then(data => {
-        section.addItem(createCard(data));
+    api.addCard(data).then(res => {
+        createCard(res);
     })
 }
 
@@ -81,6 +96,10 @@ editPopup.setEventListeners();
 const addPopup = new PopupWithForm(".popup_type_add", handleAddFormSubmit);
 
 addPopup.setEventListeners();
+
+const confirmPopup = new PopupWithConfirmation(".popup_type_confirm");
+
+confirmPopup.setEventListeners();
 
 const editFormValidator = new FormValidator(validationSettings, editForm);
 const addFormValidator = new FormValidator(validationSettings, addForm);

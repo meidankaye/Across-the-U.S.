@@ -6,6 +6,7 @@
     background-size: contain;
     min-width: 21px;
     min-height: 19px;
+    transition: visibility 0.1s, opacity 0.1s linear;
 }
 
 .place__button:hover {

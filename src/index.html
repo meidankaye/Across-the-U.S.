@@ -19,11 +19,14 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            src="<%= require('./images/profile-image.jpg')%>"
-            alt="A Profile Picture"
-            class="profile__image"
-          />
+          <div class="profile__image">
+            <div class="profile__image-overlay">
+              <img
+                src="<%= require('./images/profile-edit-image-button.svg')%>"
+                alt="Edit Button"
+              />
+            </div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <p class="profile__profession">Explorer</p>
@@ -94,11 +97,24 @@
           </div>
         </div>
         <div class="popup popup_type_preview">
-            <div class="popup__container popup__container_type_preview">
-                <button class="popup__close-button"></button>
-                <img src=" " alt="Image couldn't load" class="popup__image-preview">
-                <p class="popup__image-name"></p>
-            </div>
+          <div class="popup__container popup__container_type_preview">
+            <button class="popup__close-button"></button>
+            <img
+              src=" "
+              alt="Image couldn't load"
+              class="popup__image-preview"
+            />
+            <p class="popup__image-name"></p>
+          </div>
+        </div>
+        <div class="popup popup_type_confirm">
+          <div class="popup__container popup__container_type_confirm">
+            <h3 class="popup__title popup__title_confirm">Are you sure?</h3>
+            <form class="popup__form">
+              <button class="popup__close-button"></button>
+              <button class="popup__button" type="submit">Yes</button>
+            </form>
+          </div>
         </div>
       </main>
       <footer class="footer">
@@ -111,7 +127,10 @@
         <div class="place__image"></div>
         <div class="place__details">
           <h2 class="place__title"></h2>
-          <button class="place__button"></button>
+          <div class="place__like-wrapper">
+            <button class="place__button"></button>
+            <span class="place__like-count"></span>
+          </div>
         </div>
       </article>
     </template>
