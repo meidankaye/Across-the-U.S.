@@ -1,4 +1,5 @@
-import "regenerator-runtime/runtime";
+// NEED TO UPDATE//
+
 import "./index.css";
 
 import { cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
@@ -39,11 +40,18 @@ function createCard(data) {
         data,
         handleCardClick,
         handleLikeButton: (id) => {
-            api.likeCard(id).then((res) => {
-                newCard.handleLikeCard(res.likes);
-                console.log(res.likes);
-            })
-        }, 
+            const isAlreadyliked = newCard.isLiked();
+
+            if (isAlreadyliked) {
+                api.dislikeCard(id).then((res) => {
+                    newCard.handleLikeCard(res.likes);
+                });
+            } else {
+                api.likeCard(id).then((res) => {
+                    newCard.handleLikeCard(res.likes);
+                })
+            }
+        },
         handleDeleteCard: (id) => {
             confirmPopup.open();
             confirmPopup.setAction(() => {
@@ -83,17 +91,18 @@ const section = new Section({
 
 const userInfo = new UserInfo({
     nameSelector: ".profile__name",
-    professionSelector: ".profile__profession"
+    professionSelector: ".profile__profession",
+    imageSelector: ".profile__image"
 });
 
 const imagePopup = new PopupWithImage(".popup_type_preview");
 imagePopup.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup_type_edit", handleEditFormSubmit);
+const editPopup = new PopupWithForm(".popup_type_edit", handleEditFormSubmit, "Save");
 
 editPopup.setEventListeners();
 
-const addPopup = new PopupWithForm(".popup_type_add", handleAddFormSubmit);
+const addPopup = new PopupWithForm(".popup_type_add", handleAddFormSubmit, "Create");
 
 addPopup.setEventListeners();
 

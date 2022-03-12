@@ -110,8 +110,26 @@
         <div class="popup popup_type_confirm">
           <div class="popup__container popup__container_type_confirm">
             <h3 class="popup__title popup__title_confirm">Are you sure?</h3>
+            <button class="popup__close-button"></button>
             <form class="popup__form">
-              <button class="popup__close-button"></button>
+              <button class="popup__button" type="submit">Yes</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_type_avatar">
+          <div class="popup__container popup__container_type_avatar">
+            <h3 class="popup__title">Change profile picture</h3>
+            <button class="popup__close-button"></button>
+            <form class="popup__form">
+              <input
+              id="avatar-input"
+              type="url"
+              name="link"
+              class="popup__input popup__input_type_link"
+              placeholder="Avatar link"
+              required
+              />
+              <span class="popup__error" id="avatar-input-error"></span>
               <button class="popup__button" type="submit">Yes</button>
             </form>
           </div>

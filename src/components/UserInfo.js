@@ -1,10 +1,9 @@
-// Work in Progress
-
 class UserInfo {
 
-    constructor({ nameSelector, professionSelector }) {
+    constructor({ nameSelector, professionSelector, imageSelector }) {
         this._userName = document.querySelector(nameSelector);
         this._userProfession = document.querySelector(professionSelector);
+        this._userImage = document.querySelector(imageSelector);
     }
 
     getUserInfo() {
@@ -17,6 +16,10 @@ class UserInfo {
     setUserInfo({ name, profession }) {
         this._userName.textContent = name
         this._userProfession.textContent = profession
+    }
+
+    setUserImage(url) {
+        this._userImage.style.backgroundImage = `url("${url}")`;
     }
 
 }

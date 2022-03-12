@@ -27,6 +27,16 @@ export default class Api {
     });
   }
 
+  updateUserImage({ avatar }) {
+    return this._customFetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+      method: 'PATCH',
+      body: JSON.stringify({
+        avatar
+      }),
+    });
+  }
+
   addCard({ name, link }) {
     return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -49,6 +59,13 @@ export default class Api {
     return this._customFetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       headers: this._headers,
       method: 'PUT',
+    });
+  }
+
+  dislikeCard(cardID) {
+    return this._customFetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+      headers: this._headers,
+      method: 'DELETE',
     });
   }
 

@@ -15,13 +15,15 @@ class Card {
         this._ownerId = data.owner._id;
     }
 
-    isLiked = () => {
-        return isLiked = this._likes.some((person) => person._id === this._userId);
-    }
+    isLiked() {
+        return this._likes.some((person) => person._id === this._userId);
+    };
 
-    handleLikeCard = (likes) => {
-        this._likes = likes;
+    handleLikeCard = (newLikes) => {
+        this._likes = newLikes;
+
         this._cardElement.querySelector(".place__like-count").textContent = this._likes.length;
+        
         this._cardElement.querySelector(".place__button").classList.toggle("place__button_active");
     }
     
@@ -57,8 +59,10 @@ class Card {
             this._cardElement.querySelector(".place__trash").style.display = "none";
         }
 
-        if (this.isLiked) {
-            this.handleLikeCard(this._likes)
+        this._cardElement.querySelector(".place__like-count").textContent = this._likes.length;
+
+        if (this.isLiked()) {
+            this.handleLikeCard(this._likes);
         }
 
         return this._cardElement;
