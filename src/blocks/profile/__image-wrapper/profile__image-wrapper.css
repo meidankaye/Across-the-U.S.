@@ -1,0 +1,7 @@
+.profile__image-wrapper {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    opacity: 1;
+    margin-right: 30px;
+}

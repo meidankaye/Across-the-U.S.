@@ -2,7 +2,7 @@
 
 import "./index.css";
 
-import { cardTemplate, editForm, addForm, editBtn, addBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
+import { cardTemplate, editForm, addForm, editBtn, addBtn, avatarBtn, popupInputName, popupInputProfession, validationSettings } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -55,6 +55,7 @@ function createCard(data) {
         handleDeleteCard: (id) => {
             confirmPopup.open();
             confirmPopup.setAction(() => {
+                confirmPopup.showLoading();
                 api.removeCard(id).then(() => {
                     newCard.removeCard();
                     confirmPopup.close();
@@ -76,11 +77,20 @@ function handleAddFormSubmit() {
     api.addCard(data).then(res => {
         createCard(res);
     })
+    addPopup.showLoading();
 }
 
 function handleEditFormSubmit(data) {
-    userInfo.setUserInfo(data)
+    userInfo.setUserInfo(data);
+    editPopup.showLoading();
 }
+
+function handleAvatarFormSubmit(userData) {
+    api.updateUserImage(userData.link).then(res => {
+        userInfo.setUserImage(res);
+    })
+    avatarPopup.showLoading();
+}  
 
 // Classes
 const section = new Section({
@@ -105,6 +115,10 @@ editPopup.setEventListeners();
 const addPopup = new PopupWithForm(".popup_type_add", handleAddFormSubmit, "Create");
 
 addPopup.setEventListeners();
+
+const avatarPopup = new PopupWithForm(".popup_type_avatar", handleAvatarFormSubmit, "Save");
+
+avatarPopup.setEventListeners();
 
 const confirmPopup = new PopupWithConfirmation(".popup_type_confirm");
 
@@ -131,3 +145,7 @@ addBtn.addEventListener("click", () => {
     addFormValidator.resetFormValidation();
     addPopup.open();
 });
+
+avatarBtn.addEventListener("click", () => {
+    avatarPopup.open();
+})

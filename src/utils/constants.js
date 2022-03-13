@@ -6,6 +6,7 @@ export const addForm = document.querySelector(".popup_type_add").querySelector("
 
 export const editBtn = document.querySelector(".profile__edit-button");
 export const addBtn = document.querySelector(".profile__add-button");
+export const avatarBtn = document.querySelector(".profile__image-overlay");
 
 export const popupInputName = document.querySelector(".popup__input_type_name");
 export const popupInputProfession = document.querySelector(".popup__input_type_profession");

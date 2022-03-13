@@ -27,13 +27,11 @@ export default class Api {
     });
   }
 
-  updateUserImage({ avatar }) {
+  updateUserImage(data) {
     return this._customFetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: 'PATCH',
-      body: JSON.stringify({
-        avatar
-      }),
+      body: JSON.stringify({ avatar: data }),
     });
   }
 

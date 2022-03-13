@@ -4,19 +4,23 @@ import Popup from "./Popup.js";
 
 class PopupWithConfirmation extends Popup {
 
-    constructor() {
-
+    constructor(popupSelector) {
+        super(popupSelector);
+        this._button = this._popupElement.querySelector(".popup__button");
     }
 
     setAction(action) {
         this._submitHandler = action;
     }
 
+    showLoading() {
+        this._button.textContent = "Deleting...";
+    }
+
     setEventListeners() {
         this._popupElement.addEventListener("submit", (e) => {
             e.preventDefault();
             this._submitHandler();
-            // this.close();
         })
 
         super.setEventListeners();
