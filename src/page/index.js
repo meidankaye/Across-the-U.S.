@@ -14,6 +14,12 @@ import Api from "../components/Api.js";
 
 let userId;
 
+const userInfo = new UserInfo({
+    nameSelector: ".profile__name",
+    professionSelector: ".profile__profession",
+    imageSelector: ".profile__image"
+});
+
 // API
 
 const api = new Api({
@@ -30,7 +36,8 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         userId = userData._id;
         section.render(cards);
 
-        userInfo.setUserInfo({ name: userData.name, profession: userData.about })
+        userInfo.setUserImage(userData.avatar);
+        userInfo.setUserInfo({ name: userData.name, profession: userData.about });
     })
 
 // Functions
@@ -72,7 +79,7 @@ function handleCardClick (name, link) {
 }
 
 function handleAddFormSubmit() {
-    const inputValues = addPopup._getInputValues();
+    const inputValues = addPopup.getInputValues();
     const data = { name: inputValues.title, link: inputValues.link };
     api.addCard(data).then(res => {
         createCard(res);
@@ -80,8 +87,12 @@ function handleAddFormSubmit() {
     addPopup.showLoading();
 }
 
-function handleEditFormSubmit(data) {
-    userInfo.setUserInfo(data);
+function handleEditFormSubmit() {
+    const inputValues = editPopup.getInputValues();
+    const data = { name: inputValues.name, profession: inputValues.profession };
+    api.updateProfile(data).then(res => {
+        userInfo.setUserInfo(res);
+    })
     editPopup.showLoading();
 }
 
@@ -98,12 +109,6 @@ const section = new Section({
         section.addItem(createCard(card));
     }
 }, ".places");
-
-const userInfo = new UserInfo({
-    nameSelector: ".profile__name",
-    professionSelector: ".profile__profession",
-    imageSelector: ".profile__image"
-});
 
 const imagePopup = new PopupWithImage(".popup_type_preview");
 imagePopup.setEventListeners();

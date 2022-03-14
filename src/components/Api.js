@@ -35,7 +35,7 @@ export default class Api {
     });
   }
 
-  editProfile({ name, about }) {
+  updateProfile({ name, about }) {
     return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
