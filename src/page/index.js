@@ -87,10 +87,10 @@ function handleEditFormSubmit(data) {
 
 function handleAvatarFormSubmit(userData) {
     api.updateUserImage(userData.link).then(res => {
-        userInfo.setUserImage(res);
+        userInfo.setUserImage(res.avatar);
     })
     avatarPopup.showLoading();
-}  
+}
 
 // Classes
 const section = new Section({

@@ -35,6 +35,17 @@ export default class Api {
     });
   }
 
+  editProfile({ name, about }) {
+    return this._customFetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        name,
+        about
+      })
+    });
+  }
+
   addCard({ name, link }) {
     return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
