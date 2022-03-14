@@ -15,7 +15,7 @@ class UserInfo {
 
     setUserInfo(data) {
         this._userName.textContent = data.name
-        this._userProfession.textContent = data.profession
+        this._userProfession.textContent = data.about
     }
 
     setUserImage(url) {

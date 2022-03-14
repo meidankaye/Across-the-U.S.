@@ -35,14 +35,14 @@ export default class Api {
     });
   }
 
-  updateProfile({ name, about }) {
+  updateProfile(data) {
     return this._customFetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-      method: "PATCH",
-      body: JSON.stringify({
-        name,
-        about
-      })
+        headers: this._headers,
+        method: 'PATCH',
+        body: JSON.stringify({
+            name: data.name,
+            about: data.profession
+        })
     });
   }
 

@@ -37,7 +37,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         section.render(cards);
 
         userInfo.setUserImage(userData.avatar);
-        userInfo.setUserInfo({ name: userData.name, profession: userData.about });
+        userInfo.setUserInfo({ name: userData.name, about: userData.about });
     })
 
 // Functions
