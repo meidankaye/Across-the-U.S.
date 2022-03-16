@@ -10,7 +10,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from "../components/PoupWithConfimation.js";
 import UserInfo from "../components/UserInfo.js";
-import Api from "../components/Api.js";
+import Api from "../utils/Api.js";
 
 let userId;
 
@@ -39,6 +39,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         userInfo.setUserImage(userData.avatar);
         userInfo.setUserInfo({ name: userData.name, about: userData.about });
     })
+    .catch(err => console.log(`Error.....: ${err}`));
 
 // Functions
 
@@ -51,12 +52,14 @@ function createCard(data) {
 
             if (isAlreadyliked) {
                 api.dislikeCard(id).then((res) => {
-                    newCard.handleLikeCard(res.likes);
-                });
+                    newCard.updateLikes(res.likes);
+                })
+                .catch(err => console.log(`Error.....: ${err}`));
             } else {
                 api.likeCard(id).then((res) => {
-                    newCard.handleLikeCard(res.likes);
+                    newCard.updateLikes(res.likes);
                 })
+                .catch(err => console.log(`Error.....: ${err}`));
             }
         },
         handleDeleteCard: (id) => {
@@ -67,6 +70,10 @@ function createCard(data) {
                     newCard.removeCard();
                     confirmPopup.close();
                 })
+                .catch(err => console.log(`Error.....: ${err}`))
+                .finally(() => {
+                    confirmPopup.hideLoading();
+                });
             })
         }
     }, cardTemplate, userId)
@@ -81,10 +88,14 @@ function handleCardClick (name, link) {
 function handleAddFormSubmit() {
     const inputValues = addPopup.getInputValues();
     const data = { name: inputValues.title, link: inputValues.link };
-    api.addCard(data).then(res => {
-        createCard(res);
-    })
     addPopup.showLoading();
+    api.addCard(data).then(res => {
+        section.addItem(createCard(res));
+    })
+    .catch(err => console.log(`Error.....: ${err}`))
+    .finally(() => {
+        addPopup.hideLoading();
+    });
 }
 
 function handleEditFormSubmit() {
@@ -93,6 +104,7 @@ function handleEditFormSubmit() {
     api.updateProfile(data).then(res => {
         userInfo.setUserInfo(res);
     })
+    .catch(err => console.log(`Error.....: ${err}`));
     editPopup.showLoading();
 }
 
@@ -100,6 +112,7 @@ function handleAvatarFormSubmit(userData) {
     api.updateUserImage(userData.link).then(res => {
         userInfo.setUserImage(res.avatar);
     })
+    .catch(err => console.log(`Error.....: ${err}`));
     avatarPopup.showLoading();
 }
 

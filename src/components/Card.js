@@ -19,15 +19,20 @@ class Card {
         return this._likes.some((person) => person._id === this._userId);
     };
 
-    handleLikeCard = (newLikes) => {
+    updateLikes = (newLikes) => {
         this._likes = newLikes;
 
-        this._cardElement.querySelector(".place__like-count").textContent = this._likes.length;
+        this._renderLikes();
         
         this._cardElement.querySelector(".place__button").classList.toggle("place__button_active");
     }
     
     removeCard = () => this._cardElement.remove();
+
+    _renderLikes = () => {
+        const likesCounter = this._cardElement.querySelector(".place__like-count");
+        likesCounter.textContent = this._likes.length;
+    }
 
     _setEventListeners = () => {
         this._cardElement.querySelector(".place__image")
@@ -59,10 +64,10 @@ class Card {
             this._cardElement.querySelector(".place__trash").style.display = "none";
         }
 
-        this._cardElement.querySelector(".place__like-count").textContent = this._likes.length;
+        this._renderLikes();
 
         if (this.isLiked()) {
-            this.handleLikeCard(this._likes);
+            this.updateLikes(this._likes);
         }
 
         return this._cardElement;

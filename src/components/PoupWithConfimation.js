@@ -10,11 +10,15 @@ class PopupWithConfirmation extends Popup {
     }
 
     setAction(action) {
-        this._submitHandler = action;
+        this._handleSubmit = action;
     }
 
     showLoading() {
         this._button.textContent = "Deleting...";
+    }
+
+    hideLoading() {
+        this._button.textContent = "Yes";
     }
 
     setEventListeners() {

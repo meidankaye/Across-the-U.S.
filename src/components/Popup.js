@@ -6,7 +6,7 @@ class Popup {
         this.close = this.close.bind(this);
     }
 
-    _handleEscUp(e) {
+    _handleEscUp = (e) => {
         e.preventDefault();
 
         if (e.key === "Escape") {
@@ -18,7 +18,7 @@ class Popup {
         this._popupElement.querySelector(".popup__close-button").addEventListener("click", this.close);
 
         this._popupElement.addEventListener("mousedown", (e) => {
-            if ([...e.target.classList].includes("popup")) {
+            if (e.target.classList.contains('popup')) {
                 this.close()
             }
         })
