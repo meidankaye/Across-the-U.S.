@@ -24,7 +24,7 @@ class PopupWithConfirmation extends Popup {
     setEventListeners() {
         this._popupElement.addEventListener("submit", (e) => {
             e.preventDefault();
-            this._submitHandler();
+            this._handleSubmit();
         })
 
         super.setEventListeners();

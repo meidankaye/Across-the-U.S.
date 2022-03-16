@@ -91,6 +91,7 @@ function handleAddFormSubmit() {
     addPopup.showLoading();
     api.addCard(data).then(res => {
         section.addItem(createCard(res));
+        addPopup.close();
     })
     .catch(err => console.log(`Error.....: ${err}`))
     .finally(() => {
@@ -103,6 +104,7 @@ function handleEditFormSubmit() {
     const data = { name: inputValues.name, profession: inputValues.profession };
     api.updateProfile(data).then(res => {
         userInfo.setUserInfo(res);
+        editPopup.close();
     })
     .catch(err => console.log(`Error.....: ${err}`));
     editPopup.showLoading();
@@ -111,6 +113,7 @@ function handleEditFormSubmit() {
 function handleAvatarFormSubmit(userData) {
     api.updateUserImage(userData.link).then(res => {
         userInfo.setUserImage(res.avatar);
+        avatarPopup.close();
     })
     .catch(err => console.log(`Error.....: ${err}`));
     avatarPopup.showLoading();
