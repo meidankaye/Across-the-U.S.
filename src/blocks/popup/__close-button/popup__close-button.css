@@ -1,10 +1,10 @@
 .popup__close-button {
-    all: unset;
     background-image: url(../../../images/form-x-button.svg);
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: pointer;
     min-width: 40px;
     min-height: 40px;
     top: -48.28px;

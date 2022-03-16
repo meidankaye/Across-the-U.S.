@@ -30,15 +30,15 @@
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <p class="profile__profession">Explorer</p>
-            <button class="profile__edit-button"></button>
+            <div class="profile__edit-button"></div>
           </div>
-          <button class="profile__add-button"></button>
+          <div class="profile__add-button"></div>
         </section>
 
         <section class="places"></section>
         <div class="popup popup_type_edit">
           <div class="popup__container">
-            <button class="popup__close-button"></button>
+            <div class="popup__close-button"></div>
             <h3 class="popup__title">Edit profile</h3>
             <form class="popup__form">
               <input
@@ -63,13 +63,13 @@
                 maxlength="200"
               />
               <span class="popup__error" id="profession-input-error"></span>
-              <button class="popup__button" type="submit">Save</button>
+              <div class="popup__button" type="submit">Save</div>
             </form>
           </div>
         </div>
         <div class="popup popup_type_add">
           <div class="popup__container">
-            <button class="popup__close-button"></button>
+            <div class="popup__close-button"></div>
             <h3 class="popup__title">New Place</h3>
             <form class="popup__form">
               <input
@@ -92,13 +92,13 @@
                 required
               />
               <span class="popup__error" id="link-input-error"></span>
-              <button class="popup__button" type="submit">Create</button>
+              <div class="popup__button" type="submit">Create</div>
             </form>
           </div>
         </div>
         <div class="popup popup_type_preview">
           <div class="popup__container popup__container_type_preview">
-            <button class="popup__close-button"></button>
+            <div class="popup__close-button"></div>
             <img
               src=" "
               alt="Image couldn't load"
@@ -110,16 +110,16 @@
         <div class="popup popup_type_confirm">
           <div class="popup__container popup__container_type_confirm">
             <h3 class="popup__title popup__title_confirm">Are you sure?</h3>
-            <button class="popup__close-button"></button>
+            <div class="popup__close-button"></div>
             <form class="popup__form">
-              <button class="popup__button" type="submit">Yes</button>
+              <div class="popup__button" type="submit">Yes</div>
             </form>
           </div>
         </div>
         <div class="popup popup_type_avatar">
           <div class="popup__container popup__container_type_avatar">
             <h3 class="popup__title">Change profile picture</h3>
-            <button class="popup__close-button"></button>
+            <div class="popup__close-button"></div>
             <form class="popup__form">
               <input
               id="avatar-input"
@@ -130,7 +130,7 @@
               required
               />
               <span class="popup__error" id="avatar-input-error"></span>
-              <button class="popup__button" type="submit">Save</button>
+              <div class="popup__button" type="submit">Save</div>
             </form>
           </div>
         </div>
@@ -146,7 +146,7 @@
         <div class="place__details">
           <h2 class="place__title"></h2>
           <div class="place__like-wrapper">
-            <button class="place__button"></button>
+            <div class="place__button"></div>
             <span class="place__like-count"></span>
           </div>
         </div>

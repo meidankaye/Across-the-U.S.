@@ -1,12 +1,12 @@
 .place__button {
-    all: unset;
     background-image: url(../../../images/places-heart.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: pointer;
     min-width: 21px;
     min-height: 19px;
-    transition: visibility 0.1s, opacity 0.1s linear;
+    transition: opacity 0.1s linear;
 }
 
 .place__button:hover {

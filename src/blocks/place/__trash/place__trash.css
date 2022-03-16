@@ -5,6 +5,7 @@
     right: 15px;
     width: 18px;
     height: 19.3px;
+    cursor: pointer;
     transition: visibility 0.1s, opacity 0.1s linear;
 }
 
