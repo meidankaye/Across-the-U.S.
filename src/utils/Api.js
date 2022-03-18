@@ -10,9 +10,6 @@ export default class Api {
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
       )
-      // .catch((err) => {
-      //   console.log(`Error: ${err}`);
-      // });
   };
 
   getInitialCards() {
